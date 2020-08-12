@@ -1,0 +1,4 @@
+[Service]
+Type=oneshot
+ExecStart=feh -z --bg-scale --no-fehbg /home/sources/wallpaper
+

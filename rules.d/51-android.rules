@@ -1,0 +1,8 @@
+SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", MODE="0660",GROUP="arm"
+SUBSYSTEM=="usb", ATTR{idProduct}=="2ea4",ATTR{idVendor}=="22b8",MODE="0660",GROUP="arm"
+SUBSYSTEM=="usb", ATTR{idProduct}=="22d9",ATTR{idVendor}=="2776",MODE="0660",GROUP="arm"
+#noikia x7
+SUBSYSTEM=="usb", ATTR{idProduct}=="c025",ATTR{idVendor}=="2e04",MODE="0660",GROUP="arm"
+SUBSYSTEM=="usb", ATTR{idProduct}=="c026",ATTR{idVendor}=="2e04",MODE="0660",GROUP="arm"
+SUBSYSTEM=="usb", ATTR{idProduct}=="c001",ATTR{idVendor}=="0489",MODE="0660",GROUP="arm"
+
