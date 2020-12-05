@@ -1,0 +1,15 @@
+由于archlinux 中的visual code studio不用微软官方扩展市场。需要修改product.json(位置参考 pacman -Ql code)
+
+原来
+    "extensionsGallery": {
+        "serviceUrl": "https://open-vsx.org/vscode/gallery",
+        "itemUrl": "https://open-vsx.org/vscode/item"
+    }
+改为
+  "extensionsGallery": {
+    "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
+    "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
+    "itemUrl": "https://marketplace.visualstudio.com/items"
+  }
+
+但是这个修改会被软件更新时覆盖。

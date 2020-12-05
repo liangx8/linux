@@ -1,3 +1,5 @@
+# place this to ~/.config/systemd/user
+# systemctl --user enable wallpaper.timer
 [Unit]
 Description=Set desktop wallpaper
 

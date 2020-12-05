@@ -5,4 +5,7 @@ SUBSYSTEM=="usb", ATTR{idProduct}=="22d9",ATTR{idVendor}=="2776",MODE="0660",GRO
 SUBSYSTEM=="usb", ATTR{idProduct}=="c025",ATTR{idVendor}=="2e04",MODE="0660",GROUP="arm"
 SUBSYSTEM=="usb", ATTR{idProduct}=="c026",ATTR{idVendor}=="2e04",MODE="0660",GROUP="arm"
 SUBSYSTEM=="usb", ATTR{idProduct}=="c001",ATTR{idVendor}=="0489",MODE="0660",GROUP="arm"
+#sony 
+SUBSYSTEM=="usb", ATTR{idProduct}=="51ff",ATTR{idVendor}=="0fce",MODE="0660",GROUP="arm"
+SUBSYSTEM=="usb", ATTR{idProduct}=="31ff",ATTR{idVendor}=="0fce",MODE="0660",GROUP="arm"
 
