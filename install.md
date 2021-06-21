@@ -43,3 +43,4 @@ gnuplot                  画二维
 volumeicon        tint2的音量控制
 xpdf              pdf reader
 cdrtools          ripping sound track抓CD音轨
+dosfstools        dos file system utilities
