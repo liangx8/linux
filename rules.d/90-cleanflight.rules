@@ -1,0 +1,2 @@
+# cc3d
+SUBSYSTEM=="usb", ATTRS{idVendor}=="20a0",ATTRS{idProduct}=="415b", MODE="0660", GROUP="arm"

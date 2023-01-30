@@ -1,0 +1,11 @@
+URxvt.font:             xft:Noto Sans Mono CJK SC:size=9,xft:Noto Color Emoji:size=9
+! URxvt.font:           xft:Noto Color Emoji:size=9
+URxvt.scrollBar:        off
+URxvt.inputMethod:      ibus
+URxvt.background:       rgb:5c/5c/ff
+#URxvt 以下命令可以直接测试字体在urxvt中的表现
+#printf '\e]710;%s\007' "xft:Terminus:pixelsize=12"
+
+
+#URxvt.tabbar-bg: rgb: ff/3a/4b
+#URxvt.perl-ext-common: ...,tabbed,...

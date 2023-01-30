@@ -1,0 +1,27 @@
+pacstrap package
+base linux linux-firmware nano
+
+arch-chroot之后要安装的包
+nano grub efibootmgr 
+amd-ucode/intel-ucode microcode ??
+
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=[XXX]
+
+xorg package:
+    xorg-server lightdm lightdm-gtk-greeter 
+    xf86-video-amdgpu
+fonts:
+    noto-fonts-cjk noto-fonts-emoji
+
+terminal emulator:
+    alacritty
+
+window manager
+    qtile
+
+took-kit:
+    dmenu
+input method:
+    ibus-rime
+
+

@@ -1,0 +1,5 @@
+widget.Net 依赖 python-psutil(archlinux)
+extension.Dmenu 依赖 dmenu
+
+用xprop看wm_class,
+用[mod]+mouse移动float window

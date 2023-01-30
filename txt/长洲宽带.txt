@@ -1,0 +1,3 @@
+天翼网管
+USER:useradmin
+PASSWORD:uhctp

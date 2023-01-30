@@ -1,0 +1,6 @@
+/etc/X11/xinit/xinitrc.d/ibus.sh
+
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+ibus-daemon -drx
