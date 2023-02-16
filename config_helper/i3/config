@@ -187,11 +187,17 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	position	top
-	status_command i3status -c $HOME/.config/i3/i3status.conf
+#	separator_symbol "*"
+#	status_command i3status -c $HOME/.config/i3/i3status.conf
+	status_command python -u $HOME/git/linux/desktop-script/i3status.py
+#	status_command $HOME/git/c-big/src/big -t
+#	status_command $HOME/bar.sh
 	mode dock
 	padding 2px
 	colors {
-		background #0f0474
+		statusline #ff0000
+		separator #33ff22
+		background #332288
 	}
 	font pango:Noto Sans Mono CJK SC 8
 #	font pango:FreeMono 9
@@ -201,7 +207,9 @@ gaps inner 3px
 #gaps outer 1px
 for_window [class="retroarch"] floating enable
 for_window [class="pcsx2-qt"] floating enable
+for_window [class="mame"] floating enable
 for_window [all] title_window_icon on
+for_window [class="firefox"] border pixel 1
 set $mode_launcher 运行: [b]浏览器 [e]编辑器 [f]文件管理器 [c]开发环境
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
