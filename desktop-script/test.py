@@ -1,6 +1,9 @@
-import netadapt
+import cpu
+import time
 if __name__ == "__main__":
-    n=netadapt.Net()
-    n.update()
-    print(n)
+    cpu.stat()
+    c=cpu.Cpu()
     
+    time.sleep(1)
+    c.update()
+    print(c)
