@@ -1,9 +1,7 @@
 import cpu
 import time
 if __name__ == "__main__":
-    cpu.stat()
-    c=cpu.Cpu()
     
-    time.sleep(1)
+    c=cpu.Mem()
     c.update()
     print(c)

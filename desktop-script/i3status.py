@@ -13,13 +13,14 @@ class statustime(dict):
     def update(self):
         now=time.time()
         tm=time.localtime(time.time())
-        netadapt.fill(self,time.strftime("%Y-%m-%d %X",tm),time.strftime("%X",tm),"#aa3445")
+        netadapt.fill(self,time.strftime("%Y-%m-%d %X",tm),time.strftime("%X",tm),"#34aa45B")
+        self['background']="#eaeaea"
 
 
 def version():
     print('{"version":1}')
 if __name__ == "__main__":
-    rows=(cpu.Cpu(),netadapt.Net(),statustime())
+    rows=(cpu.Mem(),cpu.Cpu(),netadapt.Net(),statustime())
     version()
     print('[')
     while(True):

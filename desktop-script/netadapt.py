@@ -41,7 +41,7 @@ class Net(dict):
             try:
                 with open('/sys/class/net/{}/statistics/rx_bytes'.format(self.__iface),'r') as rb:
                     r = rb.read()
-                fill(self,"{}: {}".format(self.__iface,display_amount(int(r))),None,"#dd6644")
+                fill(self,"{}: {}".format(self.__iface,display_amount(int(r))),None,"#3466ee")
                 return
             except:
                 pass
