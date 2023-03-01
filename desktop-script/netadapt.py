@@ -45,7 +45,7 @@ class Net(dict):
                 return
             except:
                 pass
-        fill(m,"无网",None,"#eaeaea")
+        fill(self,"无网",None,"#eaeaea")
         return
             
         
