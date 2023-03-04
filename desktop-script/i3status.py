@@ -13,7 +13,7 @@ class statustime(dict):
     def update(self):
         now=time.time()
         tm=time.localtime(time.time())
-        netadapt.fill(self,time.strftime("%Y-%m-%d %X",tm),time.strftime("%X",tm),"#34aa45B")
+        netadapt.fill(self,time.strftime("%Y-%m-%d %X",tm),time.strftime("%X",tm),"#34aa45")
         self['background']="#eaeaea"
 
 
