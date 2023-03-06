@@ -65,10 +65,10 @@ def cpudata():
 def stat():
     #title=('user','nice','system','idle','iowait','irq','softirq','steal','guest','guest_nice')
     title=('user','nice','system','idle','iowait','irq','softirq','total')
-    names,a1=data()
+    names,a1=cpudata()
     
     time.sleep(1)
-    _,a2=data()
+    _,a2=cpudata()
     print('\t',end='')
     for t in title:
         print(t,end='\t')
