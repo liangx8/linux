@@ -7,13 +7,20 @@ class Mem(dict):
         
         try:
             with open('/proc/meminfo','r') as st:
-                l=st.readline()
+                l = st.readline() # 0
                 sl=l.split()
-                total=int(int(sl[1])/1024/1024)
-                l=st.readline()
+                total=int(sl[1])
+                l = st.readline() # 1
                 sl=l.split()
-                aval=int(int(sl[1])/1024/1024)
-                other.fill(self,"{}/{}G".format(aval,total),None,None)
+                aval=int(sl[1])
+                _ = st.readline() # 2
+                l = st.readline() # 3
+                sl=l.split()
+                buffers=int(sl[1])
+                l = st.readline() # 4
+                sl=l.split()
+                cached=int(sl[1])+buffers
+                other.fill(self,"{}/{}/{}".format(other.sizeStr(aval),other.sizeStr(cached),other.sizeStr(total)),None,None)
         except:
             other.fill(self,"calcuting ...",None,"#880000")
 # 参考man proc 查找/proc/stat

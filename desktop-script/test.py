@@ -1,10 +1,11 @@
-import statdisk
+import cpu
 import time
 if __name__ == "__main__":
     
-    c=statdisk.StatDisk()
-    #c.update()
-    #print(c)
-    
-    time.sleep(1)
-    c.between()
+#    c=statdisk.StatDisk()
+#    time.sleep(1)
+#    c.show()
+
+    m=cpu.Mem()
+    m.update()
+    print(m)
