@@ -22,7 +22,7 @@ class Mem(dict):
                 cached=int(sl[1])+buffers
                 other.fill(self,"{}/{}/{}".format(other.sizeStr(aval),other.sizeStr(cached),other.sizeStr(total)),None,None)
         except:
-            other.fill(self,"calcuting ...",None,"#880000")
+            other.fill(self,"calculating ...",None,"#880000")
 # 参考man proc 查找/proc/stat
 class Cpu(dict):
     def __init__(self):

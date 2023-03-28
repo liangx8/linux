@@ -6,6 +6,7 @@ import time
 import json
 import netadapt
 import cpu
+import battery
 from other import fill
 
 
@@ -20,7 +21,7 @@ class statustime(dict):
 def version():
     print('{"version":1}')
 if __name__ == "__main__":
-    rows=(cpu.Mem(),cpu.Cpu(),netadapt.Net(),statustime())
+    rows=(cpu.Mem(),cpu.Cpu(),netadapt.Net(),battery.Battery(),statustime())
     version()
     print('[')
     while(True):
