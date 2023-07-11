@@ -1,0 +1,1 @@
+/sys/class/thermal/thermal_zone[n] 中能看到ＣＰＵ温度

@@ -1,12 +1,12 @@
 xorg-server
 lightdm
 lightdm-gtk-greeter
-openbox
 feh
-tint2 桌面状态条 https://gitlab.com/o9000/tint2
 picom   桌面透明代理
 
 xorg-xrdb  建议安装，否则.Xresources 的设置无效
+xorg-xev 事件提示
+
 
 code  visual code studio
 
@@ -17,6 +17,7 @@ fceux             任天堂模拟器
 mame              街机模拟器
 desmume           Nintendo DS emulator
 snes9x-gtk        Super Nintendo
+snes9x            使用提示：not joystick found时，运行加参数 -paddev1 /dev/input/js0
 zsnes             Super Nintendo
 vbam-sdl          Game Boy Advance
 ppsspp            PSP
@@ -34,7 +35,6 @@ vorbis-tools      ogg encoder
    oggenc -q 3 -o file.ogg file.wav
    oggenc -a artist -t title -l album -G genre -c comment -o file.ogg file.wav
 qbittorrent-nox   用浏览器作为UI
-js??              javascript shell, 装visual studio code的依赖
 e2fsprogs         e2label ext4分区标签
 
 gnuplot                  画二维 

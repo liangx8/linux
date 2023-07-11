@@ -35,3 +35,4 @@ inthunt		潜艇
 jackal          赤色要塞(白弹向上)
 jackalj         赤色要塞(白弹8方向)
 lgtnfght       * 飞机
+fcrash          街道战士（红白）

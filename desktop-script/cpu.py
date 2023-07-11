@@ -38,7 +38,7 @@ class Cpu(dict):
                 for idx in range(cnt):
                     total=0
                     avl=0
-                    print(names[idx].upper(),end=":",file=buf)
+                    
                     for ix in range(4):
                         total=total+cur[idx][ix]-self.__last[idx][ix]
                         
@@ -47,8 +47,10 @@ class Cpu(dict):
                     if idx == 0:
                         ir=int(avl * 255 / total)
                         color="#{:02x}0034".format(ir)
-
-                    print("{:02}".format(int(avl * 100 /total)),end=' ',file=buf)
+                    present=int(avl * 100 / total)
+                    if (idx == 0) or present > 1:
+                        print(names[idx].upper(),end=":",file=buf)
+                        print("{:02}".format(present),end=' ',file=buf)
                         #print("{}/{}".format(avl,total),end=' ',file=buf)
                 other.fill(self,buf.getvalue(),None,color)
         except:
@@ -80,7 +82,7 @@ def stat():
     for t in title:
         print(t,end='\t')
     print()
-    for idx in range(5):
+    for idx in range(17):
         print(names[idx],end='\t')
         total=0
         for ix in range(7):

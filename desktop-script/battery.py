@@ -17,7 +17,7 @@ class Battery(dict):
                 other.fill(self,"{}:{}%[{}%]".format(stat,d[3],int(d[0]/d[1]*100)),None,None)
                     
         except:
-            other.fill(self,"calculating",None,"#aa0000")
+            other.fill(self,"N/A",None,"#aa0000")
             return
 x = ("POWER_SUPPLY_CHARGE_FULL_DESIGN","POWER_SUPPLY_CHARGE_FULL","POWER_SUPPLY_STATUS","POWER_SUPPLY_CAPACITY")
 def data(fh):

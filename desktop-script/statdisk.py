@@ -2,41 +2,55 @@ import other
 
 class StatDisk(dict):
     ''' read /proc/diskstats '''
-    def __init__(self):
+    def __init__(self,disks):
         with open('/proc/diskstats','r') as st:
-            data=[]
-            head=[]
-            for li in st:
-                row=li.split()
-                head.append(row[:3])
-                nrow=[]
-                for n in row[3:]:
-                    nrow.append(int(n))
-                data.append(nrow)
-            self.__head=head
-            self.__d1=data
+            self.__d1=stat()
+            self.__disks=disks
+
         
     def update(self):
         other.fill(self,"calcuting ...",None,None)
-    def between(self):
-        d2=stat()
-        for rdx in range(len(d2)):
-            for ix in range(17):
-                d2[rdx][ix]=d2[rdx][ix] - self.__d1[rdx][ix]
-        return d2
+    def between(self,d2):
+        d=self.__d1
+        for r in d:
+            for r1 in d2:
+                if r[2] == r1[2]:
+                    for ix in range(3,len(r)):
+                        r[ix]=r1[ix]-r[ix]
+        self.__d1=d2
+        return d
     def show(self):
-        d=self.between()
-        for x in range(len(d)):
-            print(self.__head[x],d[x])
+        d2=stat()
+        d=self.between(d2)
+        show(d)
+        for dks in self.__disks:
+            for r in d:
+                if r[2]==dks:
+                    if r[6]==0:
+                        print(dks,"read 0/s")
+                    else:
+                        print(dks,"read",r[5]/r[6]*1000)
+                    if r[10]==0:
+                        print(dks,"write 0/s")
+                    else:
+                        print(dks,"write", r[9]/r[10]*1000)
         
+def show(d):
+    print("-------------------------------------")
+    for x in d:
+        print(x)
+    
 def stat():
     with open('/proc/diskstats','r') as st:
         data=[]
         for li in st:
             row=li.split()
             nrow=[]
-            for n in row[3:]:
-                nrow.append(int(n))
+            for n in range(len(row)):
+                if n==2:
+                    nrow.append(row[n])
+                else:
+                    nrow.append(int(row[n]))
             data.append(nrow)
         return data
 '''
