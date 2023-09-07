@@ -1,3 +1,0 @@
-天翼网管
-USER:useradmin
-PASSWORD:3ym3y

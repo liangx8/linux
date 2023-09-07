@@ -8,7 +8,7 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
+# 要查看键盘代码，安装xorg-xev包
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -93,7 +93,8 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+#bindsym $mod+f fullscreen toggle
+#I don't need fullscreen mode, use layout tabbed instead
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -101,7 +102,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+f floating toggle
 
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
@@ -186,18 +187,26 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	position	top
+	position	 top
+#	workspace_buttons yes
+#        tray_output      primary
+        i3bar_command    i3bar --transparency
 #	separator_symbol "*"
-#	status_command i3status -c $HOME/.config/i3/i3status.conf
-	status_command python -u $HOME/git/linux/desktop-script/i3status.py
-#	status_command $HOME/git/c-big/src/big -t
-#	status_command $HOME/bar.sh
-	mode dock
-	padding 2px
+	status_command   python -u $HOME/git/linux/desktop-script/i3status.py
+#	status_command   i3status
+#	status_command   $HOME/bar.sh
+	mode             dock
+	padding          2px
 	colors {
-		statusline #ff0000
+		statusline #560134
 		separator #33ff22
-		background #332288
+		background #353580
+
+#                focused_workspace  #F9FAF9 #16a085 #292F34
+                active_workspace   #595B5B #353836 #FDF6E3
+                inactive_workspace #595B5B #222D31 #EEE8D5
+                binding_mode       #16a085 #24167d #F9FAF9
+                urgent_workspace   #16a085 #FDF6E3 #E5201D
 	}
 	font pango:Noto Sans Mono CJK SC 8
 #	font pango:FreeMono 9
@@ -208,15 +217,22 @@ gaps inner 3px
 for_window [class="retroarch"] floating enable
 for_window [class="pcsx2-qt"] floating enable
 for_window [class="mame"] floating enable
+for_window [class="Desmume"] floating enable
+for_window [class="Ryujinx"] floating enable
+for_window [class="PPSSPP*"] floating enable
+
+
 for_window [all] title_window_icon on
-for_window [class="firefox"] border pixel 1
-set $mode_launcher 运行: [b]浏览器 [e]编辑器 [f]文件管理器 [c]开发环境
+default_border pixel 1
+#for_window [class="firefox"] border pixel 1
+set $mode_launcher 运行: [b]浏览器 [f]文件管理器 [c]开发环境
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
-	bindsym b exec firefox
-	bindsym e exec l3afpad
+	bindsym b exec microsoft-edge-stable
 	bindsym f exec pcmanfm
 	bindsym c exec code
 	bindsym Escape mode "default"
 	bindsym Return mode "default"
+        bindsym $mod+o mode "default"
 }
+
