@@ -221,9 +221,9 @@ for_window [class="Desmume"] floating enable
 for_window [class="Ryujinx"] floating enable
 for_window [class="PPSSPP*"] floating enable
 
-
 for_window [all] title_window_icon on
-default_border pixel 1
+#设置这个参数，会使应用的标题消失
+#default_border pixel 1
 #for_window [class="firefox"] border pixel 1
 set $mode_launcher 运行: [b]浏览器 [f]文件管理器 [c]开发环境
 bindsym $mod+o mode "$mode_launcher"

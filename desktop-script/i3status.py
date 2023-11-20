@@ -21,11 +21,11 @@ class statustime(dict):
 def version():
     print('{"version":1}')
 if __name__ == "__main__":
-    rows=(cpu.Mem(),cpu.Cpu(),netadapt.Net(),battery.Battery(),statustime())
+    cols=(cpu.Cpu(),cpu.Mem(),netadapt.Net(),battery.Battery(),statustime())
     version()
     print('[')
     while(True):
-        for row in rows:
-            row.update()
-        print(json.dumps(rows,ensure_ascii=False),end=",\n")
+        for col in cols:
+            col.update()
+        print(json.dumps(cols,ensure_ascii=False),end=",\n")
         time.sleep(5)

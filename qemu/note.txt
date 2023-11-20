@@ -1,0 +1,14 @@
+# install
+    install package qemu-desktop
+# create image
+    qemu-img create -f qcow2 <imagename> 16G
+# run
+## 支持UEFI BIOS
+    添加参数
+    -bios /usr/share/edk2-ovmf/x64/OVMF.fd
+## 访问qcow2镜像
+    用 network block device(NBD)
+    modprob nbd max_part=8
+    把qcow2作为网络设备链接
+    qemu-nbd --connect=/dev/nbd0 <qcow2 file>
+    qemu-nbd --disconnect=/dev/nbd0

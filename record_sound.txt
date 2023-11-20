@@ -1,0 +1,56 @@
+要录由电脑播放的声音
+1. 加载内核模块 snd_aloop
+   $ sudo modprobe snd-aloop pcm_substreams=1
+2. 修改/etc/asound.conf
+   # .asoundrc
+   pcm.!default { type plug slave.pcm "hw:Loopback,0,0" }
+   在这个配置下，再打开音乐，声音将无法被播放，所有的声音都被播放到Loopback,0,0了
+3. arecord 命令就可以录下所有由系统发出来的声音。
+   $ arecord -D "hw:Loopback,1,0" -d 238 -f cd  只对你有感觉.wav
+
+4. 以下的配置是把音频输出到2个设备上，这样能一边听一边录
+
+# /etc/asound.conf
+pcm.multi {
+    type route;
+    slave.pcm {
+        type multi;
+        slaves.a.pcm "output";
+        slaves.b.pcm "loopin";
+        slaves.a.channels 2;
+        slaves.b.channels 2;
+        bindings.0.slave a;
+        bindings.0.channel 0;
+        bindings.1.slave a;
+        bindings.1.channel 1;
+        bindings.2.slave b;
+        bindings.2.channel 0;
+        bindings.3.slave b;
+        bindings.3.channel 1;
+    }
+
+    ttable.0.0 1;
+    ttable.1.1 1;
+    ttable.0.2 1;
+    ttable.1.3 1;
+}
+
+pcm.!default {
+	type plug
+	slave.pcm "multi"
+} 
+
+pcm.output {
+	type hw
+	card <真实的发声设备 0 ~ n>
+}
+
+pcm.loopin {
+	type plug
+	slave.pcm "hw:Loopback,0,0"
+}
+
+pcm.loopout {
+	type plug
+	slave.pcm "hw:Loopback,1,0"
+}
