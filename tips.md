@@ -23,3 +23,9 @@
   当更新出现key错误时，运行命令
 
     $ sudo pacman -S archlinux-keyring
+# ssh 使用代理
+
+  用到netcat命令，需要用openbsd-netcat。编辑ssh设置文件 ~/.ssh/config
+
+        Host github.com
+            ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p
