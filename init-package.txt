@@ -17,7 +17,9 @@ terminal emulator:
     alacritty
 
 window manager
-    qtile
+    i3wm
+查看键盘代码
+    xorg-xev
 
 took-kit:
     dmenu

@@ -1,0 +1,13 @@
+画墙：
+1 先在Draft模式,将工作面(working plane)定义到xy面(plane)
+2 画出墙的线条Drafting->Line
+3 切换到Arch模式,选择第2步画的线条建立墙Arch->Wall
+  可以在Wall的参数设定中定义厚度(width),高度(height),对齐(Align)
+4 在墙面上开窗口和门等.修改后需要让附着的对象重新计数(recompute)
+
+
+
+
+Sketcher Tutorial(V0.21)
+Toggle construction geometry(G,N) 蓝色是参考线，不会显示在３Ｄ模式下
+Toggle driving/reference constrains(G,X) 蓝色图标是显示数值，不会起到限制作用
