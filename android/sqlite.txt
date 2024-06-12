@@ -1,0 +1,3 @@
+使用数据库的规范
+Best Practices for SQLite performance
+https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjcsOyFmumEAxXFZfUHHWeXDJAQFnoECBcQAQ&url=https%3A%2F%2Fdeveloper.android.com%2Ftopic%2Fperformance%2Fsqlite-performance-best-practices&usg=AOvVaw2ueU1ZV2rWUJIYqmx09MbH&opi=89978449a
