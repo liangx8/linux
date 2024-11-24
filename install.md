@@ -26,6 +26,7 @@ qgo               围棋
 linuxconsole      手柄測試
   jstest /dev/input/js0
 moc               mp3 player at console
+mpg123            mp3 player at command line
 alsa-utils        音频控制
    arecord -d 10 sample.wav 记录10秒的音频到文件sample.wav中
    aplay sample.wav
