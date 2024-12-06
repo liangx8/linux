@@ -1,6 +1,6 @@
-/etc/X11/xinit/xinitrc.d/ibus.sh
-
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-ibus-daemon -drx
+模拟终端ls出现颜色需要手动配置
+在/etc/profile.d中加入给ls颜色到命令别名例如
+/etc/profile.d/color.sh
+alias ls="ls -F --color=auto"
+然后在$HOME/.bashrc或者.profile中主动调用/etc/profile
+系统时钟同步用 systemd-timesyncd.service

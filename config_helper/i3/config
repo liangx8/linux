@@ -212,25 +212,29 @@ bar {
 #	font pango:FreeMono 9
 }
 
-gaps inner 3px
+gaps inner 5px
 #gaps outer 1px
+#用命令xprop来看window到属性
 for_window [class="retroarch"] floating enable
 for_window [class="pcsx2-qt"] floating enable
 for_window [class="mame"] floating enable
 for_window [class="Desmume"] floating enable
 for_window [class="Ryujinx"] floating enable
 for_window [class="PPSSPP*"] floating enable
+for_window [class="chromium"] move container to workspace $ws2
 
 for_window [all] title_window_icon on
 #设置这个参数，会使应用的标题消失
 #default_border pixel 1
 #for_window [class="firefox"] border pixel 1
-set $mode_launcher 运行: [b]浏览器 [f]文件管理器 [c]开发环境
+set $mode_launcher 运行: [b]浏览器 [f]文件管理器 [c]开发环境 [i]Python IDLE [e]简单文本
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
-	bindsym b exec microsoft-edge-stable
+	bindsym b exec chromium
 	bindsym f exec pcmanfm
 	bindsym c exec code
+	bindsym i exec idle
+        bindsym e exec l3afpad
 	bindsym Escape mode "default"
 	bindsym Return mode "default"
         bindsym $mod+o mode "default"

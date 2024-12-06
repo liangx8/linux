@@ -1,3 +1,13 @@
 package
 
 fcitx5-rime,fcitx5-configtool(optional)
+
+保存一下内容到目录 "/etc/X11/xinit/xinitrc.d/"
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
+export INPUT_METHOD=fcitx
+export GLFW_IM_MODULE=ibus
+fcitx5 -d

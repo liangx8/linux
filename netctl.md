@@ -1,3 +1,5 @@
+wifi使用iwd
+
 netctl的任务要激活 使用有2种方法
     systemctl enable netctl-auto@service_name
   另外一种方法
