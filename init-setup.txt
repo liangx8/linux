@@ -1,6 +1,11 @@
-模拟终端ls出现颜色需要手动配置
+## 模拟终端ls出现颜色需要手动配置
+
 在/etc/profile.d中加入给ls颜色到命令别名例如
 /etc/profile.d/color.sh
 alias ls="ls -F --color=auto"
 然后在$HOME/.bashrc或者.profile中主动调用/etc/profile
-系统时钟同步用 systemd-timesyncd.service
+
+## 系统时钟同步用 systemd-timesyncd.service
+
+## grub引导window
+    系统需要按照在wiki.archlinux.org上grub的一下额外配置。不能单纯到加chainload

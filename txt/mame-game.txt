@@ -10,14 +10,13 @@ vapor trail    D弹飞机
 vendetta(crime fighters 2) 4人动作
 victory road    魔版 怒
 ikari warroies  怒
-jackal          吉普车
 mia             刺刀动作
 mwalk           moon walker
 midres	       * 商店魂斗罗
 outzonea        out zone
 p47             * P47 phontom finghter
 pow             脱狱
-crimfghtu       * 最早4人
+crimfghtu       * 最早4人(最不好玩的版本)
 tharrieru       * 会变成无敌飞机
 cbuster         * 动作
 ctribe          4人动作
@@ -37,3 +36,4 @@ jackalj         赤色要塞(白弹8方向)
 lgtnfght       * 飞机
 fcrash          街道战士（红白）
 prehisle        飞机打恐龙
+
