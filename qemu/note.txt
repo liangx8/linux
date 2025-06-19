@@ -1,5 +1,6 @@
 # install
-    install package qemu-desktop
+    package qemu-desktop
+    package edk2-ovmf
 # create image
     qemu-img create -f qcow2 <imagename> 16G
 # run
