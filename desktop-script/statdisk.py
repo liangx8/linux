@@ -3,9 +3,8 @@ import other
 class StatDisk(dict):
     ''' read /proc/diskstats '''
     def __init__(self,disks):
-        with open('/proc/diskstats','r') as st:
-            self.__d1=stat()
-            self.__disks=disks
+        self.__d1=stat()
+        self.__disks=disks
 
         
     def update(self):
