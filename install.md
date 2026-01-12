@@ -46,4 +46,7 @@ xpdf              pdf reader
 cdrtools          ripping sound track抓CD音轨
 dosfstools        dos file system utilities
 
+vlc               mp4等多种视频文件，
+                  打开mp4文件需要插件vlc-plugin-ffmpeg
+
 resilio-sync      必须自行下载。运行依赖 libxcrypt-compat

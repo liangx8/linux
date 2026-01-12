@@ -1,0 +1,22 @@
+不必在考究显卡的驱动
+必须的包
+wayland
+xorg-xwayland
+fcitx5-rime
+fcitx5-configtool
+foot/alacritty
+wmenu
+swaybg
+swayidle
+
+下面的命令设置一个背景图（必须安装了swaybg）
+swaymsg 'output "*" bg /home/com/wallpaper/collection_0097.jpg fit'
+以下命令获取应用的信息，可用于编写for_window　的选择应用中的条件
+swaymsg -t get_tree
+
+为应该设置opacity 0.5可直接改变该应用的透明度（可看透到背景）
+
+一些必须的设置
+
+把需要xorg-xwayland支持的应用区别出来
+for_window [shell="xwayland"] title_format "[XW] %title"
