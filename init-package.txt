@@ -1,5 +1,5 @@
 pacstrap package
-base linux linux-firmware nano
+base linux linux-firmware nano grub efibootmgr [iwd]
 
 arch-chroot之后要安装的包
 nano grub efibootmgr 

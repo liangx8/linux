@@ -30,3 +30,5 @@
         Host github.com
             ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p
 
+gpg -ca <plain text file>
+gpg -da <encrypt file>

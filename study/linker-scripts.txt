@@ -1,0 +1,6 @@
+# linker script
+  1. f421的link script中有一个段 **._user_heap_stack**注释的描述/* User_heap_stack section, used to check that there is enough RAM left */
+  2. 知识点：LMA(Load Memory Address)段的LMA属性如果超过单片机的flash上限，将无法烧录。这是内存段必须要正确定义的.
+  3. LMA定义的规则:在第一个段定义结束“} >FLASH”(假设FLASH是定义flash块的名称)。
+  4. 为段定义NOLOAD属性，段只存在于运行时，这样也不会占用程序空间
+  5. PROGBITS属性，段存在于程序中，占用程序文件的空间，需要被装
