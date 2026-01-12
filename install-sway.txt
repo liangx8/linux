@@ -9,6 +9,13 @@ wmenu
 swaybg
 swayidle
 
+目前的启动方法
+步骤1安装uwsm(Universal Wayland Session Manager)
+步骤2在.bashrc中加入启动命令
+if [ -z "$WAYLAND_DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ] ; then
+    exec uwsm start /usr/share/wayland-sessions/sway.desktop
+fi
+
 下面的命令设置一个背景图（必须安装了swaybg）
 swaymsg 'output "*" bg /home/com/wallpaper/collection_0097.jpg fit'
 以下命令获取应用的信息，可用于编写for_window　的选择应用中的条件
