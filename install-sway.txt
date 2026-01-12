@@ -8,6 +8,30 @@ foot/alacritty
 wmenu
 swaybg
 swayidle
+swaylock
+
+安装uwsm(Universal Wayland Session Manager)
+登录管理
+greetd
+greetd-tuigreet
+/etc/greetd/config.toml
+[default_session]
+command = "tuigreet --user-menu -r -t"
+
+使用uwsm启动sway
+先添加一个
+/usr/share/wayland-sessions/sway-uwsm.desktop
+[Desktop Entry]
+Name=Sway (uwsm-managed)
+Comment=An i3-compatible Wayland compositor
+Exec=uwsm start -e -D Sway sway.desktop
+TryExec=sway
+Type=Application
+DesktopNames=sway
+
+tuigreet会自动搜索/usr/share/wayland-sessions/目录下所有的*.desktop文件，并列出来
+
+
 
 下面的命令设置一个背景图（必须安装了swaybg）
 swaymsg 'output "*" bg /home/com/wallpaper/collection_0097.jpg fit'
@@ -20,3 +44,7 @@ swaymsg -t get_tree
 
 把需要xorg-xwayland支持的应用区别出来
 for_window [shell="xwayland"] title_format "[XW] %title"
+
+
+启动foot-server
+修改$term = footclient
