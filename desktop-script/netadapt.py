@@ -30,10 +30,12 @@ def display_amount(size):
         num=size
         uom='b'
     return "{}{}".format(num,uom)
-
+icon_wifi='\uf1eb'
+#icon_wifi='\U0001f4f6'
 class Net(dict):
     def __init__(self):
         self.__iface=guessNetInterface()
+        self['background']='#ea8023'
     def update(self):
         if not self.__iface:
             self.__iface=guessNetInterface()
@@ -41,11 +43,11 @@ class Net(dict):
             try:
                 with open('/sys/class/net/{}/statistics/rx_bytes'.format(self.__iface),'r') as rb:
                     r = rb.read()
-                fill(self,"\U0001f4f6{}: {}".format(self.__iface,display_amount(int(r))),None,"#3466ee")
+                fill(self,"{}{}{}".format(self.__iface,icon_wifi,display_amount(int(r))),None,None)
                 return
             except:
                 pass
-        fill(self,"无网\U0001f4a2",None,"#eaeaea")
+        fill(self,"无网\U0001f4a2",None,None)
         return
             
         

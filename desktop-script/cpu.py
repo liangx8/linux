@@ -27,6 +27,7 @@ class Mem(dict):
 class Cpu(dict):
     def __init__(self):
         _,self.__last=cpudata()
+        self['background']='#2360a4'
     def update(self):
         names,cur = cpudata()
         cnt=len(names)
