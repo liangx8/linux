@@ -4,6 +4,7 @@ statePath="/sys/class/power_supply/BAT1/uevent"
 class Battery(dict):
     def __init__(self):
         other.fill(self,"caculating",None,"#aa0000")
+        self['background']='#50ea23'
     def update(self):
         stat='N/A'
         try:
