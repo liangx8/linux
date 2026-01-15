@@ -7,6 +7,7 @@ picom   桌面透明代理
 xorg-xrdb  建议安装，否则.Xresources 的设置无效
 xorg-xev 事件提示
 
+用wayland后，上面的都不需要了
 
 code  visual code studio
 
@@ -25,8 +26,6 @@ ppsspp            PSP
 qgo               围棋
 linuxconsole      手柄測試
   jstest /dev/input/js0
-moc               mp3 player at console
-mpg123            mp3 player at command line
 alsa-utils        音频控制
    arecord -d 10 sample.wav 记录10秒的音频到文件sample.wav中
    aplay sample.wav
@@ -46,7 +45,5 @@ xpdf              pdf reader
 cdrtools          ripping sound track抓CD音轨
 dosfstools        dos file system utilities
 
-vlc               mp4等多种视频文件，
-                  打开mp4文件需要插件vlc-plugin-ffmpeg
-
+mpv               万能音乐，视频文件播放
 resilio-sync      必须自行下载。运行依赖 libxcrypt-compat

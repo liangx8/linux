@@ -7,6 +7,7 @@ import json
 import netadapt
 import cpu
 import battery
+import mpv_ctrl
 from other import fill
 
 
@@ -14,15 +15,14 @@ class statustime(dict):
     def update(self):
         now=time.time()
         tm=time.localtime(time.time())
-        netadapt.fill(self,time.strftime("%Y-%m-%d %X",tm),time.strftime("%X",tm),"#34aa45")
-        if not 'background' in self:
-            self['background']="#eaeaea"
-
+        fill(self,time.strftime("%Y-%m-%d %X",tm),time.strftime("%X",tm),"#34aa45")
 
 def version():
     print('{"version":1}')
 if __name__ == "__main__":
-    cols=(cpu.Cpu(),cpu.Mem(),netadapt.Net(),battery.Battery(),statustime())
+    cols=(cpu.Cpu(),mpv_ctrl.MpvControl(),cpu.Mem(),netadapt.Net(),battery.Battery(),statustime())
+    for idx in range(len(cols)):
+        cols[idx]['name']='n{}'.format(idx)
     version()
     print('[')
     while(True):

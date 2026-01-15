@@ -237,7 +237,7 @@ bar {
 }
 gaps inner 5px
 #gaps outer 5px
-smart_gaps on
+#smart_gaps on
 #smart_borders on
 set $mode_launcher 运行:[b]浏览器 [f]文件管理器 [c]开发环境 [i]IDLE
 bindsym $mod+o mode "$mode_launcher"
@@ -250,15 +250,16 @@ mode "$mode_launcher" {
    
 }
 for_window [all] title_window_icon on
-for_window [shell="xwayland"] title_format "[XW] %title"
 for_window [class="mgba"] floating enable
 for_window [class="mame"] floating enable
 for_window [app_id="org.TasEmulators.fceux"] floating enable
 for_window [app_id="pcsx2-qt"] floating enable
+for_window [instance="dialog$"] floating enable
+for_window [instance="gitk"] floating enable
+
+for_window [shell="xwayland"] title_format "[XW] %title"
 for_window [app_id="chromium"] move container to workspace number 2
 for_window [app_id="chromium"] opacity 0.9
-#wayland中应用透明度是一个缺省功能．不需要额外设置
-#for_window [app_id="footclient"] opacity 0.8
 include /etc/sway/config.d/*
 include config_fx
 exec fcitx5 -dr

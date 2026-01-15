@@ -7,6 +7,7 @@ layer_effects "waybar" {
     shadows enable
     corner_radius 20
 }
-#shadow enable
-#blur enable
-#shadow_blur_radius 10
+shadows enable
+shadow_color #4500007f
+blur enable
+shadow_blur_radius 10

@@ -6,7 +6,7 @@ def fill(obj,ft,st,color):
     if color:
         obj["color"]=color
     else:
-        obj["color"]="#ffffff"
+        obj["color"]="#000000"
 #    obj['background']='#aeaeae'
 #    obj['border_top']=5
 #    obj['border_bottom']=5
