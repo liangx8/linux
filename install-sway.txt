@@ -53,5 +53,5 @@ swaymsg -t get_tree
 for_window [shell="xwayland"] title_format "[XW] %title"
 
 
-启动foot-server
+启动foot-server,必须使用uwsm启动合成器，graphical-session.target才有效，foot-serever才能启动成功
 修改$term = footclient
