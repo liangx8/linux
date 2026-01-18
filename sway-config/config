@@ -22,8 +22,8 @@ set $menu wmenu-run
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/com/wallpaper/pure-beautiful.jpg fill
-#output * bg /home/com/wallpaper/beaut1.png fill
+#output * bg /home/com/wallpaper/pure-beautiful.jpg fill
+output * bg /home/com/wallpaper/beauty10.png fill
 #output * bg /home/com/wallpaper/beaut4.png fill
 #
 # Example configuration:
@@ -229,7 +229,8 @@ bar {
         statusline #ff0000
         background #35353580
         separator  #ffffff
-        urgent_workspace #eaeaea #34aa12 #ffffff
+# urgent_workspace 就是laucher显示的菜单
+        urgent_workspace #eaeaea #34aa1240 #ffffff
         inactive_workspace #32323200 #32323280 #ffffff
     }
     font pango:Noto Sans Mono CJK SC 9
@@ -260,6 +261,7 @@ for_window [instance="gitk"] floating enable
 for_window [shell="xwayland"] title_format "[XW] %title"
 for_window [app_id="chromium"] move container to workspace number 2
 for_window [app_id="chromium"] opacity 0.9
+for_window [app_id="code-oss"] opacity 0.8
 include /etc/sway/config.d/*
 include config_fx
 exec fcitx5 -dr

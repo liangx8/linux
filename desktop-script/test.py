@@ -1,6 +1,7 @@
 import statdisk
 import cpu
 import time
+import msgin
 def sd():
     c=statdisk.StatDisk(("sda","sdb"))
     c.update()
@@ -12,5 +13,8 @@ def core():
     c.update()
     print(c)
 if __name__ == "__main__":
-    core()
+    #core()
     #battery.findBattery()
+    tsk=msgin.Task()
+    tsk.run(None)
+    tsk.wait()

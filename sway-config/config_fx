@@ -1,13 +1,13 @@
 smart_corner_radius enable
 corner_radius 10
-layer_effects "waybar" {
-    blur enable
-    blur_xray enable
-    blur_ignore_transparent enable
-    shadows enable
-    corner_radius 20
-}
+#layer_effects "waybar" {
+#    blur enable
+#    blur_xray enable
+#    blur_ignore_transparent enable
+#    shadows enable
+#    corner_radius 20
+#}
 shadows enable
 shadow_color #4500007f
-blur enable
-shadow_blur_radius 10
+#blur enable
+#shadow_blur_radius 10

@@ -3,8 +3,9 @@ import other
 import io
 
 class Mem(dict):
+    def __init__(self):
+        self['background']='#ca4de3'
     def update(self):
-        
         try:
             with open('/proc/meminfo','r') as st:
                 l = st.readline() # 0
