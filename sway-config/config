@@ -232,6 +232,7 @@ bar {
 # urgent_workspace 就是laucher显示的菜单
         urgent_workspace #eaeaea #34aa1240 #ffffff
         inactive_workspace #32323200 #32323280 #ffffff
+	active_workspace #ff0000 #00ff00 #ffffff
     }
     font pango:Noto Sans Mono CJK SC 9
 #    font pango:FreeMono 14
