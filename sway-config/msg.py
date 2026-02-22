@@ -1,7 +1,8 @@
 import os
 import socket
 import io
-cmd='output * bg /home/com/wallpaper/beauty1.png fit'
+import json
+cmd='output * bg /home/com/wallpaper/beauty1aa.png fit'
 def demo(sock):
     with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as sf:
         sf.connect(sock)
@@ -14,7 +15,11 @@ def demo(sock):
             buf.write(cmdbuf)
             sf.sendall(buf.getvalue())
             data=sf.recv(1000)
-            print(data.decode())
+            cnt=int.from_bytes( data[6:10],'little')
+            ty=int.from_bytes(data[10:14],'little')
+            buf=json.loads(data[14:])
+            print(buf,type(buf[0]),cnt,ty)
+            
         
     
 if __name__ == '__main__':
