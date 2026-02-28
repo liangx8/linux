@@ -36,10 +36,10 @@ output * bg /home/com/wallpaper/beauty9.png fill
 #
 # Example configuration:
 #
-exec swayidle -w \
-          timeout 300 'swaylock -f -c 000000' \
-          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          before-sleep 'swaylock -f -c 000000'
+#exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -258,6 +258,7 @@ for_window [app_id="org.TasEmulators.fceux"] floating enable
 for_window [app_id="pcsx2-qt"] floating enable
 for_window [instance="dialog$"] floating enable
 for_window [instance="gitk"] floating enable
+for_window [app_id="PPSSPPSDL"] floating enable
 
 for_window [shell="xwayland"] title_format "[XW] %title"
 for_window [app_id="chromium"] move container to workspace number 2

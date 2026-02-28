@@ -10,7 +10,7 @@ def setbg(fn,sock):
         sf.connect(sock)
         with io.BytesIO() as buf:
             buf.write('i3-ipc'.encode())
-            cmd=f"output * bg {fn} fit"
+            cmd=f"output * bg {fn} fill"
             cmdbuf=cmd.encode()
             buf.write(len(cmdbuf).to_bytes(4,'little'))
             buf.write(bytes((0,0,0,0)))
@@ -28,7 +28,8 @@ def listFiles(path):
     cb = lambda x:path+x.name
     pn=pathlib.Path(path)
     return [cb(x) for x in pn.iterdir() if x.name.endswith('.png') or x.name.endswith('.jpg')]
-def newList(path,fn):
+def newList(path,fn,logf):
+    print('NEW LIST',file=logf)
     contents=listFiles(path)
     random.shuffle(contents)
     cnt=len(contents)
@@ -39,7 +40,7 @@ def newList(path,fn):
             lf.write('\n')
     return contents[0]
 
-def updatePics(path):
+def updatePics(path,logf):
     
     fn=pathlib.Path(path+'pic-list.txt')
     if fn.exists():
@@ -51,7 +52,7 @@ def updatePics(path):
             total=int(stotal)
             cur=cur+1
             if cur==total:
-                return newList(path,fn)
+                return newList(path,fn,logf)
             headcont[0]=f"{cur},{stotal}"
             with fn.open('w') as lf:
                 lf.writelines(headcont)
@@ -61,7 +62,7 @@ def updatePics(path):
             else:
                 return res
 
-    return newList(path,fn)
+    return newList(path,fn,logf)
     
     
 
@@ -73,7 +74,7 @@ class Wallpaper(dict):
         self.__cnt=3
         self.__log=log
         self.__sway_sock=os.environ['SWAYSOCK']
-        fn=updatePics(dirpath)
+        fn=updatePics(dirpath,log)
         res=setbg(fn,self.__sway_sock)
         if res==None:
             print(f"最新背景{fn}",file=self.__log)
@@ -84,7 +85,7 @@ class Wallpaper(dict):
         cnt=self.__cnt
         if cnt==0 :
             self.__cnt=30
-            val=updatePics(self.__dir)
+            val=updatePics(self.__dir,self.__log)
             if val==None:
                 print("未知错误",file=self.__log)
                 return
