@@ -37,6 +37,8 @@ vorbis-tools      ogg encoder
 qbittorrent-nox   用浏览器作为UI
 e2fsprogs         e2label ext4分区标签
 
+
+octave            数学画图
 gnuplot                  画二维 
                   plot [x=1:4] 0.5*x*x-3.1
 
