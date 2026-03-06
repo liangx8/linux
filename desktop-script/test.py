@@ -1,7 +1,8 @@
 import statdisk
 import cpu
 import time
-import msgin
+import wallpaper
+import sys
 def sd():
     c=statdisk.StatDisk(("sda","sdb"))
     c.update()
@@ -15,6 +16,6 @@ def core():
 if __name__ == "__main__":
     #core()
     #battery.findBattery()
-    tsk=msgin.Task()
-    tsk.run(None)
-    tsk.wait()
+    
+    wallpaper.Wallpaper('/home/com/wallpaper/',sys.stdout).update()
+    sd()

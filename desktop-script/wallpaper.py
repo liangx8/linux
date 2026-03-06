@@ -27,10 +27,16 @@ def setbg(fn,sock):
 def listFiles(path):
     cb = lambda x:path+x.name
     pn=pathlib.Path(path)
-    return [cb(x) for x in pn.iterdir() if x.name.endswith('.png') or x.name.endswith('.jpg')]
+    if pn.exists():
+        return [cb(x) for x in pn.iterdir() if x.name.endswith('.png') or x.name.endswith('.jpg')]
+    else:
+        return None
 def newList(path,fn,logf):
-    print('NEW LIST',file=logf)
     contents=listFiles(path)
+    if contents==None:
+        print(f'{path} is not available',file=logf)
+        return None
+    print('NEW LIST',file=logf)
     random.shuffle(contents)
     cnt=len(contents)
     headcont=[f"1,{cnt}"]+contents
@@ -51,17 +57,15 @@ def updatePics(path,logf):
             cur=int(scur)
             total=int(stotal)
             cur=cur+1
-            if cur==total:
-                return newList(path,fn,logf)
-            headcont[0]=f"{cur},{stotal}"
-            with fn.open('w') as lf:
-                lf.writelines(headcont)
-            res=headcont[cur]
-            if res.endswith('\n'):
-                return res[:-1]
-            else:
-                return res
-
+            if cur<total:
+                headcont[0]=f"{cur},{stotal}"
+                with fn.open('w') as lf:
+                    lf.writelines(headcont)
+                res=headcont[cur]
+                if res.endswith('\n'):
+                    return res[:-1]
+                else:
+                    return res
     return newList(path,fn,logf)
     
     
@@ -75,11 +79,14 @@ class Wallpaper(dict):
         self.__log=log
         self.__sway_sock=os.environ['SWAYSOCK']
         fn=updatePics(dirpath,log)
-        res=setbg(fn,self.__sway_sock)
-        if res==None:
-            print(f"最新背景{fn}",file=self.__log)
-        else:
-            print(f"尝试设置背景'{fn}'错误:\n{res}",file=self.__log)
+        if fn != None:
+            res=setbg(fn,self.__sway_sock)
+            if res==None:
+                print(f"最新背景{fn}",file=self.__log)
+            else:
+                print(f"尝试设置背景'{fn}'错误:\n{res}",file=self.__log)
+    def onclick(self,ev):
+        print(ev,file=self.__log)
         
     def update(self):
         cnt=self.__cnt
