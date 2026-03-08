@@ -11,15 +11,18 @@ class Expense:
             lines=fh.readlines()
         self.__db=[]
         for li in lines:
+            if len(li.strip())==0:continue
             row=li.split()
             cnt=len(row)
             if cnt != 4:
                 raise Exception(f'unexpect cols{cnt} in line[{li}]')
             self.__db.append(parse(row))
     def save(self):
+        sum=0
         for rec in self.__db:
             print(f'{rec[0]} {rec[1]:8.2f} {rec[2]} {rec[3]}')
-            
+            sum = sum + rec[1]
+        print(f'total ￥{sum:.2f}')
 if __name__=="__main__":
     a=Expense('big-expense.txt')
     a.save()
