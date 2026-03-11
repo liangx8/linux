@@ -34,9 +34,9 @@ def listFiles(path):
 def newList(path,fn,logf):
     contents=listFiles(path)
     if contents==None:
-        print(f'{path} is not available',file=logf)
+        logf.info(f'{path} is not available')
         return None
-    print('NEW LIST',file=logf)
+    logf.info('NEW LIST')
     random.shuffle(contents)
     cnt=len(contents)
     headcont=[f"1,{cnt}"]+contents
@@ -67,10 +67,10 @@ def updatePics(path,logf):
                 else:
                     return res
     return newList(path,fn,logf)
-    
-    
 
-    
+
+
+
 class Wallpaper(dict):
     def __init__(self,dirpath,log):
         self['background']='#1255d0'
@@ -82,25 +82,25 @@ class Wallpaper(dict):
         if fn != None:
             res=setbg(fn,self.__sway_sock)
             if res==None:
-                print(f"最新背景{fn}",file=self.__log)
+                log.info(f"最新背景{fn}")
             else:
-                print(f"尝试设置背景'{fn}'错误:\n{res}",file=self.__log)
+                log.info(f"尝试设置背景'{fn}'错误:\n{res}")
     def onclick(self,ev):
-        print(ev,file=self.__log)
-        
+        self.__log.info(ev)
+
     def update(self):
         cnt=self.__cnt
         if cnt==0 :
             self.__cnt=30
             val=updatePics(self.__dir,self.__log)
             if val==None:
-                print("未知错误",file=self.__log)
+                self.__log.info("未知错误")
                 return
             res=setbg(val,self.__sway_sock)
             if res==None:
-                print(f"最新背景{val}",file=self.__log)
+                self.__log.info(f"最新背景{val}")
             else:
-                print(f"尝试设置背景'{val}'错误:\n{res}",file=self.__log)
+                self.__log.info(f"尝试设置背景'{val}'错误:\n{res}")
         else:
             self.__cnt=cnt-1
         other.fill(self,"{:02d}".format(cnt),None,None)
