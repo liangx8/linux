@@ -5,3 +5,18 @@ octave 数学软件
 命令备忘：
  # 生成随机的3x2阵列
  a=rand(3,2);
+
+公开函数：函数名字与文件名字相同
+与函数名不同的函数只能被同文件中的函数调用
+放在private目录下的函数文件是私有函数
+
+可变返回变量varargout,nargout,varargin,用于定义函数可可变参数，可变返回
+
+文件除了注释，第一次出现的是function,此文件则定义为function文件，否则会被认为是脚本(script)文件
+在一个脚本中执行另外一个脚本有souce和直接写文件名
+
+当自定义的函数把内置函数覆盖(overload),可以用builtin函数来只能内置函数调用
+
+函数锁mlock mislock munlock
+
+savepath 把添加的路径保存到指定文件(缺省~/.octaverc)中

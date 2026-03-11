@@ -13,6 +13,7 @@ import mpv_ctrl
 import wallpaper
 import os
 import io
+import mylog
 from other import fill
 
 
@@ -31,13 +32,7 @@ def run(cols,log,logn):
         for col in cols:
             col.update()
         print(json.dumps(cols,ensure_ascii=False),end=",\n")
-        if log.tell() > 0:
-            logval=log.getvalue()
-            log.seek(0)
-            with open(logn,'a') as lf:
-                lf.write(logval)
-            log.truncate()
-            
+        log.flush()
         time.sleep(5)
 def config(cfgname):
     try:
@@ -66,16 +61,15 @@ if __name__ == "__main__":
     else:
         if 'log' in cfg:
             logname=cfg['log']
-    log=io.StringIO()
-    
-    print('sway-bar log start',file=log)
+    log=mylog.Log(logname)
+    log.info('sway-bar log start')
     cols=(cpu.Cpu(),mpv_ctrl.MpvControl(),cpu.Mem(),netadapt.Net(),battery.Battery(),wallpaper.Wallpaper(cfg['wallpaper'],log),statustime())
     for idx in range(len(cols)):
         cols[idx]['name']='n{}'.format(idx)
     tak=threading.Thread(target=run,args=(cols,log,logname))
     tak.start()
     if cfgerr:
-        print(f'open file {cfgname} error',file=log)
+        log.info(f'open file {cfgname} error')
     #log.flush()
     cnt=0
     while True:
@@ -83,9 +77,7 @@ if __name__ == "__main__":
         # bug: 这里只执行了１次，以后就没有信息再进来了
         if len(line)<3:
             continue
-        with open(logname,'a') as lf:
-            lf.write(line)
-        #print(line,file=log,end="")
+        log.info(line)
         if line[0]==',':
             raw=line[1:]
         else:

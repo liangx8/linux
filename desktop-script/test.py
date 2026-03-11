@@ -2,7 +2,7 @@ import statdisk
 import cpu
 import time
 import wallpaper
-import sys
+import mylog
 def sd():
     c=statdisk.StatDisk(("sda","sdb"))
     c.update()
@@ -16,6 +16,7 @@ def core():
 if __name__ == "__main__":
     #core()
     #battery.findBattery()
-    
-    wallpaper.Wallpaper('/home/com/wallpaper/',sys.stdout).update()
+    log=mylog.Log('/home/cyc/test.log')
+    wallpaper.Wallpaper('/home/com/wallpaper/',log).update()
     sd()
+    log.flush()
