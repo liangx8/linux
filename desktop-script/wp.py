@@ -1,9 +1,11 @@
 #手动切换桌面背景
+import i3status
 import wallpaper
 import mylog
 import sys
 if __name__ == "__main__":
     log=mylog.Log(sys.stdout)
-    wallpaper.Wallpaper('/home/com/wallpaper/',log).update()
+    cfg=i3status.config("i3status.cfg")
+    wallpaper.Wallpaper(cfg['wallpaper'],log).update()
     log.flush()
     

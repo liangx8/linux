@@ -14,7 +14,7 @@ class Log:
             if isinstance(self.__logobj,io.Writer):
                 self.__logobj.write(logv)
             if isinstance(self.__logobj,str):
-                with open(self.__logname,'a') as lf:
+                with open(self.__logobj,'a') as lf:
                     lf.write(logv)
             log.truncate()
 if __name__ == "__main__":

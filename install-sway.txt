@@ -55,3 +55,6 @@ for_window [shell="xwayland"] title_format "[XW] %title"
 
 启动foot-server,必须使用uwsm启动合成器，graphical-session.target才有效，foot-serever才能启动成功
 修改$term = footclient
+
+要vulkan生效安装对应驱动的包
+vulkan-intel/amd/nvidia
