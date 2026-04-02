@@ -27,6 +27,7 @@ class statustime(dict):
 
 
 def run(cols,log,logn):
+    version()
     print('[')
     while(True):
         for col in cols:
@@ -51,7 +52,6 @@ def version():
 #    print('{"version":1}')
     
 if __name__ == "__main__":
-    version()
     cfgname=os.environ['HOME']+'/git/linux/desktop-script/i3status.cfg'
     cfg=config(cfgname)
     cfgerr=False
