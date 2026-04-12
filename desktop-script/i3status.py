@@ -26,7 +26,7 @@ class statustime(dict):
         fill(self,time.strftime("%Y-%m-%d %X",tm),time.strftime("%X",tm),None)
 
 
-def run(cols,log,logn):
+def showout(cols,log,logn):
     version()
     print('[')
     while(True):
@@ -35,6 +35,13 @@ def run(cols,log,logn):
         print(json.dumps(cols,ensure_ascii=False),end=",\n")
         log.flush()
         time.sleep(5)
+def eventhdl(log):
+    cnt=0
+    while True:
+        line=sys.stdin.readline()
+        if len(line)<3:
+            continue
+        log.info(line)
 def config(cfgname):
     try:
         with open(cfgname) as cfg:
@@ -66,22 +73,9 @@ if __name__ == "__main__":
     cols=(cpu.Cpu(),mpv_ctrl.MpvControl(),cpu.Mem(),netadapt.Net(),battery.Battery(),wallpaper.Wallpaper(cfg['wallpaper'],log),statustime())
     for idx in range(len(cols)):
         cols[idx]['name']='n{}'.format(idx)
-    tak=threading.Thread(target=run,args=(cols,log,logname))
+    tak=threading.Thread(target=eventhdl,args=(log,))
     tak.start()
     if cfgerr:
         log.info(f'open file {cfgname} error')
+    showout(cols,log,logname)
     #log.flush()
-    cnt=0
-    while True:
-        line=sys.stdin.readline()
-        # bug: 这里只执行了１次，以后就没有信息再进来了
-        if len(line)<3:
-            continue
-        log.info(line)
-        if line[0]==',':
-            raw=line[1:]
-        else:
-            raw=line
-        ev=json.load(raw)
-        #print(f'{ev}',file=log)
-        #log.flush()
