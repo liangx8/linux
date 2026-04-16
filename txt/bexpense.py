@@ -59,4 +59,4 @@ class Expense:
         
 if __name__=="__main__":
     a=Expense('big-expense.txt')
-    a.save()
+    a.month(4)
