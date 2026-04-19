@@ -22,7 +22,7 @@ class Expense:
         self.__db.sort(key=lambda da:da[0],reverse=True)
     def save(self):
         print('details of lastmont')
-        self.month()
+        self.month(4)
     def search(self,scope=(datetime.date(2025,1,1),datetime.date.today()),tag=None):
         sumx=0
         for rec in takewhile(lambda x:x[0]>scope[0],dropwhile(lambda x:x[0]>=scope[1],self.__db)):
