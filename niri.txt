@@ -1,0 +1,14 @@
+必须安装的包
+waybar
+必须修改配置中的sway/xxxx段成为niri/xxxx
+wofi 起动器
+
+wpaperd 壁纸管理
+添加配置文件~/.config/wpaperd/config.toml
+[any]
+path="/home/com/wallpaper"
+duration = "5m"
+sorting = "random"
+
+
+用命令wpaperctl ...来看当前用什么图片

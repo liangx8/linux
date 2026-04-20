@@ -10,6 +10,9 @@ swaybg
 swayidle
 swaylock
 
+mako 显示管理通知，使用命令notify-send(包libnotify)发送通知
+
+
 安装uwsm(Universal Wayland Session Manager)
 登录管理
 greetd
