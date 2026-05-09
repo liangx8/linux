@@ -330,6 +330,7 @@ window-rule {
     match app-id="org.TasEmulators.fceux"
     match app-id="mgba"
     match app-id="desmume"
+    match app-id="^PPSSPP"
     open-floating true
     open-on-workspace "leisure"
 }
