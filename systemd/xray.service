@@ -1,7 +1,7 @@
 # place this file to ~/.config/systemd/user
 # and run systemctl --user start v2ray
 [Unit]
-Description=V2Ray Service
+Description=XRay Service
 After=network.target
 Wants=network.target
 
@@ -12,8 +12,8 @@ Wants=network.target
 # User=v2ray
 # Group=v2ray
 Type=simple
-PIDFile=/run/v2ray.pid
-ExecStart=/home/user/v2ray/v2ray -config /home/user/v2ray/config.json
+PIDFile=/run/xray.pid
+ExecStart=/home/app/xray/v2ray -config /home/app/xray/config.json
 Restart=on-failure
 # Don't restart in the case of configuration error
 RestartPreventExitStatus=23
