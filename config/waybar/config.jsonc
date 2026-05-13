@@ -7,8 +7,8 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "niri/workspaces",
-        "custom/media"
+        "niri/workspaces"
+        //"custom/media"
     ],
     "modules-center": [
         "niri/window"
@@ -25,6 +25,7 @@
         "backlight",
         "keyboard-state",
 //        "niri/language",
+        "custom/wallpaper",
         "clock",
         "tray"
 //        "custom/power"
@@ -192,17 +193,23 @@
         },
         "on-click": "pavucontrol"
     },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    // "custom/media": {
+    //     "format": "{icon} {text}",
+    //     "return-type": "json",
+    //     "max-length": 40,
+    //     "format-icons": {
+    //         "spotify": "",
+    //         "default": "🎜"
+    //     },
+    //     "escape": true,
+    //     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+    //     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    // },
+    "custom/wallpaper":{
+        "format":"{text}",
+        "interval":5,
+        "return-type":"json",
+        "exec":"python ~/git/linux/config/waybar/wallpaper.py"
     },
     "niri/window":{
         "format":"[{app_id}] {title}"

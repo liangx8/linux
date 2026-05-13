@@ -2,7 +2,7 @@ TYPE_SHUTDOWN         = 0
 TYPE_INT              = 1
 TYPE_STR              = 2
 TYPE_GETVALUE         = 3
-TYPE_VALUE_BEFORE_GET = 4
+TYPE_VALUE_BEFORE_DEC = 4
 
 def int2b4(v):
     return v.to_bytes(4,'little')
@@ -40,9 +40,9 @@ class PackGetValue(Pack):
     def writeTo(self,out):
         out.write(int2b4(TYPE_GETVALUE))
         self.writekey(out)
-class PackValueBeforeGet(PackGetValue):
+class PackValueBeforeDec(PackGetValue):
     def writeTo(self,out):
-        out.write(int2b4(TYPE_VALUE_BEFORE_GET))
+        out.write(int2b4(TYPE_VALUE_BEFORE_DEC))
         self.writekey(out)
 
 def resultInt(out,val):
@@ -66,7 +66,7 @@ def unpack(buf):
         key=b2int(buf[4:8])
         size=b2int(buf[8:12])
         return ty,key,buf[12:size+12].decode()
-    if ty==TYPE_GETVALUE or ty==TYPE_VALUE_BEFORE_GET:
+    if ty==TYPE_GETVALUE or ty==TYPE_VALUE_BEFORE_DEC:
         key=b2int(buf[4:8])
         return ty,key,None
     return ty,None,None
