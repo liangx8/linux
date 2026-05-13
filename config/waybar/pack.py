@@ -80,3 +80,7 @@ def unresult(buf):
         size=b2int(buf[8:12])
         val=buf[12:12+size].decode()
     return code,val
+
+if __name__=='__main__':
+    import sys
+    print(sys.argv)
