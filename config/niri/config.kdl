@@ -271,7 +271,6 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 spawn-at-startup "awww-daemon"
-spawn-at-startup "python" "~/git/linux/config/waybar/waybar_service.py"
 //spawn-at-startup "wpaperd" "-d"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -658,7 +657,12 @@ binds {
 }
 workspace "oss"
 workspace "leisure"
+workspace "ocason"
 window-rule{
     match app-id="code-oss"
     open-on-workspace "oss"
+}
+window-rule{
+    match app-id="mpv"
+    open-on-workspace "ocason"
 }

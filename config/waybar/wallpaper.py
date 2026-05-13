@@ -1,12 +1,10 @@
-import os
 import io
 import json
 import pathlib
 import random
 import subprocess
 import mylog
-import waybar_socket
-import pack
+import counter
 def listFiles(path):
     cb = lambda x:path+x.name
     pn=pathlib.Path(path)
@@ -17,7 +15,7 @@ def listFiles(path):
 def newList(path,fn,logf):
     conts=listFiles(path)
     if conts==None:
-        logf.info(f'读取目录{path}中到图片出错')
+        logf.info(f'读取目录{path}中到图片列表出错')
         return None
     logf.info("新列表")
     random.shuffle(conts)
@@ -55,43 +53,24 @@ class WallpaperAwww():
     def __init__(self,wallpaper_dir):
         self.__dir=wallpaper_dir
         self.__log=mylog.WaybarLog('/tmp/waybar.log')
+        self.__counter=counter.Counter('/tmp/wallpaper.count')
         
-    def action(self,sk):
-        pi=pack.PackValueBeforeDec(1)
-        out=io.BytesIO()
-        pi.writeTo(out)
-        sk.sendall(out.getvalue())
-        bres=sk.recv(1000)
-        code,val=pack.unresult(bres)
-        if code==0:
-            self.__text=f'{val}'
-            # print(json.dumps({
-            #     "text": f'{val}',
-            #     "class": "custom/wallpaper"
-            # }))
-            if val>TOTAL_SEC:
-                wp=loadPic(self.__dir,self.__log)
-                self.__log.info(f'运行awww 设置背景 {wp}')
-                result = subprocess.run(['awww', 'img', '-t', 'random' ,wp], capture_output=True, text=True, check=True)
-                #self.__log.info(result)
-                return self.resetCounter
-            return None
-        return self.resetCounter
-    def resetCounter(self,sk):
-        pi=pack.PackInt(1,TOTAL_SEC)
-        out=io.BytesIO()
-        pi.writeTo(out)
-        sk.sendall(out.getvalue())
-        bres=sk.recv(1000)
-        code,val=pack.unresult(bres)
-        self.__text=f'{TOTAL_SEC}'
-    def onerr(self,e):
-        self.__text=f'{e}'
+    def action(self):
+        val=self.__counter.valueBeforeDec()
+        if val>TOTAL_SEC:
+            wp=loadPic(self.__dir,self.__log)
+            self.__log.info(f'运行awww 设置背景 {wp}')
+            result = subprocess.run(['awww', 'img', '-t', 'random' ,wp], capture_output=True, text=True, check=True)
+            #self.__log.info(result)
+            self.__counter.setValue(TOTAL_SEC)
+        self.__text=f'{val}'
     def atOnce(self):
         wp=loadPic(self.__dir,self.__log)
         self.__log.info(f'手动设置背景 {wp}')
-        _ = subprocess.run(['awww', 'img', '-t', 'random' ,wp], capture_output=True, text=True, check=True)
-        #self.__log.info(result)
+        try:
+            res=subprocess.run(['awww', 'img', '-t', 'random' ,wp], capture_output=True, text=True, check=True)
+        except subprocess.CalledProcessError as e:
+            self.__log.info(e)
 
     def dump(self):
         print(json.dumps({
@@ -99,84 +78,14 @@ class WallpaperAwww():
             "class": "custom/wallpaper"
         }))
 
-'''
-import subprocess
-
-# 执行 ls -l 命令
-result = subprocess.run(['ls', '-l'], capture_output=True, text=True, check=True)
-
-# 打印标准输出
-print(result.stdout)
-
-'''
-
-
-def other():
-    out=io.BytesIO()
-    pi=pack.PackShutdown()
-    pi.writeTo(out)
-    print(out.getvalue())
-    print(pack.unpack(out.getvalue()))
-
-    pi=pack.PackInt(1,1)
-    out.seek(0,io.SEEK_SET)
-    pi.writeTo(out)
-    out.truncate()
-    print(out.getvalue())
-    print(pack.unpack(out.getvalue()))
-
-    pi=pack.PackStr(2,"中文")
-    out.seek(0,io.SEEK_SET)
-    pi.writeTo(out)
-    out.truncate()
-    print(out.getvalue())
-    print(pack.unpack(out.getvalue()))
-
-    pi=pack.PackGetValue(2)
-    out.seek(0,io.SEEK_SET)
-    pi.writeTo(out)
-    out.truncate()
-    print(out.getvalue())
-    print(pack.unpack(out.getvalue()))
-
-    pi=pack.PackValueBeforeGet(15)
-    out.seek(0,io.SEEK_SET)
-    pi.writeTo(out)
-    out.truncate()
-    print(out.getvalue())
-    print(pack.unpack(out.getvalue()))
-def action(client):
-    out=io.BytesIO()
-
-    #pi=pack.PackGetValue(20)
-    #pi=pack.PackStr(2,'欢迎')
-    pi=pack.PackShutdown()
-    #pi=pack.PackInt(1,9)
-    #pi=pack.PackValueBeforeDec(1)
-    #pi=pack.PackGetValue(1)
-    pi.writeTo(out)
-    client.sendall(out.getvalue())
-    bres=client.recv(1000)
-    print(pack.unresult(bres))
-def sample():
-    waybar_socket.skclient(action)
-
 if __name__=='__main__':
-    #sample()
-    #other()
     import sys
-    wa=WallpaperAwww(os.environ['HOME']+'/wallpapers/')
+    wa=WallpaperAwww('/home/com/wallpaper/')
     if len(sys.argv)>1:
-        pass
         if sys.argv[1]=='next':
             wa.atOnce()
             exit()
-    func=wa.action
-    while True:
-        if func == None:
-            break
-        else:
-            func=waybar_socket.skclient(func,wa.onerr)
+    wa.action()
     wa.dump()
     
 
