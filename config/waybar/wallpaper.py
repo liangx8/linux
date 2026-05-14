@@ -3,8 +3,28 @@ import json
 import pathlib
 import random
 import subprocess
+import os
 import mylog
 import counter
+
+
+
+def loadCfg(path):
+    ini=dict()
+    with open(path) as cfgh:
+        lines=cfgh.readlines()
+    for line in lines:
+        key,value=[item.strip() for item in line.split('=',1)]
+        #print(key,value)
+        idx=value.find('{home}')
+        if idx<0:
+            ini[key]=value
+        else:
+            os.environ['HOME']
+            nv=value[:idx]+ os.environ['HOME'] + value[idx+6:]
+            ini[key]=nv
+    return ini
+    
 def listFiles(path):
     cb = lambda x:path+x.name
     pn=pathlib.Path(path)
@@ -48,21 +68,20 @@ def loadPic(path,logf):
                 else:
                     return wpname
     return newList(path,fn,logf)
-TOTAL_SEC = 80
 class WallpaperAwww():
-    def __init__(self,wallpaper_dir):
+    def __init__(self,wallpaper_dir,num):
         self.__dir=wallpaper_dir
         self.__log=mylog.WaybarLog('/tmp/waybar.log')
         self.__counter=counter.Counter('/tmp/wallpaper.count')
-        
+        self.__cntnum=num
     def action(self):
         val=self.__counter.valueBeforeDec()
-        if val>TOTAL_SEC:
+        if val>self.__cntnum:
             wp=loadPic(self.__dir,self.__log)
             self.__log.info(f'运行awww 设置背景 {wp}')
             result = subprocess.run(['awww', 'img', '-t', 'random' ,wp], capture_output=True, text=True, check=True)
             #self.__log.info(result)
-            self.__counter.setValue(TOTAL_SEC)
+            self.__counter.setValue(self.__cntnum)
         self.__text=f'{val}'
     def atOnce(self):
         wp=loadPic(self.__dir,self.__log)
@@ -80,11 +99,23 @@ class WallpaperAwww():
 
 if __name__=='__main__':
     import sys
-    wa=WallpaperAwww('/home/com/wallpaper/')
+    try:
+        cfg=loadCfg(os.environ['HOME']+'/.config/waybar/wallpaper.ini')
+        num=int(cfg['count_total'])
+    except ValueError:
+        num=100
+    except Exception as e:
+        print(e)
+        exit()
+    
+    wa=WallpaperAwww(cfg['path'],num)
     if len(sys.argv)>1:
         if sys.argv[1]=='next':
             wa.atOnce()
             exit()
+        if sys.argv[1]=='test':
+            exit()
+            
     wa.action()
     wa.dump()
     
