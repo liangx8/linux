@@ -20,3 +20,11 @@ octave 数学软件
 函数锁mlock mislock munlock
 
 savepath 把添加的路径保存到指定文件(缺省~/.octaverc)中
+
+函数能够被引用例如
+f = @sqrt
+
+f(4)
+-> 2
+* 乘法，矩阵的乘法必须要阶符合要求
+.* 元素对应乘法 单独元素对应乘法

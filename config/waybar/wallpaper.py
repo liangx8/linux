@@ -11,9 +11,11 @@ import counter
 
 def loadCfg(path):
     ini=dict()
+    ini['count_total']='100'
     with open(path) as cfgh:
         lines=cfgh.readlines()
     for line in lines:
+        if line.isspace():continue
         key,value=[item.strip() for item in line.split('=',1)]
         #print(key,value)
         idx=value.find('{home}')
@@ -101,12 +103,13 @@ if __name__=='__main__':
     import sys
     try:
         cfg=loadCfg(os.environ['HOME']+'/.config/waybar/wallpaper.ini')
-        num=int(cfg['count_total'])
-    except ValueError:
-        num=100
+        try:
+            num=int(cfg['count_total'])
+        except ValueError:
+            num=100
     except Exception as e:
-        print(e)
-        exit()
+        raise(e)
+        
     
     wa=WallpaperAwww(cfg['path'],num)
     if len(sys.argv)>1:
