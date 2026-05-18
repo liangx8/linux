@@ -330,6 +330,7 @@ window-rule {
     match app-id="mame"
     match app-id="org.TasEmulators.fceux"
     match app-id="mgba"
+    match app-id="mGBA"
     match app-id="desmume"
     match app-id="^PPSSPP"
     open-floating true
