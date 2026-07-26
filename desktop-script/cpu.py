@@ -78,7 +78,7 @@ def stat():
     title=('user','nice','system','idle','iowait','irq','softirq','total')
     names,a1=cpudata()
     
-    time.sleep(1)
+    time.sleep(2)
     _,a2=cpudata()
     print('\t',end='')
     for t in title:
@@ -93,5 +93,16 @@ def stat():
             total=total+x
             print(x,end='\t')
         print(total)
-            
-
+def show():
+    title=('user','nice','system','idle','iowait','irq','softirq','total')
+    names,a1=cpudata()
+    for row in range(len(names)):
+        print(names[row] ,end=' ')
+        for item in a1[row]:
+            print(item,end=' ')
+                         
+        print()
+    
+if __name__=="__main__":
+    stat()
+    #show()

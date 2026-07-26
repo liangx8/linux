@@ -14,9 +14,9 @@
         "niri/window"
     ],
     "modules-right": [
-        "mpd",
-        "idle_inhibitor",
-        "pulseaudio",
+//        "mpd",
+//        "idle_inhibitor",
+//        "pulseaudio",
         "network",
         "power-profiles-daemon",
         "cpu",
@@ -116,7 +116,7 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": true
     },
     "memory": {
         "format": "{}% "
