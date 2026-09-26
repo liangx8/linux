@@ -9,3 +9,6 @@ alias ls="ls -F --color=auto"
 
 ## grub引导window
     系统需要按照在wiki.archlinux.org上grub的一下额外配置。不能单纯到加chainload
+
+
+## 声音控制由于使用了pipewire,因此可能要安装pipewire-pules才能让某些软件发出声音
