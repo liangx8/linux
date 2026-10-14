@@ -47,5 +47,6 @@ xpdf              pdf reader
 cdrtools          ripping sound track抓CD音轨
 dosfstools        dos file system utilities
 
+imv               看图软件
 mpv               万能音乐，视频文件播放
 resilio-sync      必须自行下载。运行依赖 libxcrypt-compat
