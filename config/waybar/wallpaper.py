@@ -6,26 +6,10 @@ import subprocess
 import os
 import mylog
 import counter
+import waybarcfg
 
 
 
-def loadCfg(path):
-    ini=dict()
-    ini['count_total']='100'
-    with open(path) as cfgh:
-        lines=cfgh.readlines()
-    for line in lines:
-        if line.isspace():continue
-        key,value=[item.strip() for item in line.split('=',1)]
-        #print(key,value)
-        idx=value.find('{home}')
-        if idx<0:
-            ini[key]=value
-        else:
-            os.environ['HOME']
-            nv=value[:idx]+ os.environ['HOME'] + value[idx+6:]
-            ini[key]=nv
-    return ini
     
 def listFiles(path):
     cb = lambda x:path+x.name
@@ -71,11 +55,12 @@ def loadPic(path,logf):
                     return wpname
     return newList(path,fn,logf)
 class WallpaperAwww():
-    def __init__(self,wallpaper_dir,num):
-        self.__dir=wallpaper_dir
-        self.__log=mylog.WaybarLog('/tmp/waybar.log')
+    '''{"wallpaper":{"path":"wallpaper path","count_total":10}},"log":{"file":"log file name"}}'''
+    def __init__(self,wpcfg,logname):
+        self.__dir=wpcfg['path']
+        self.__log=mylog.WaybarLog(logname)
         self.__counter=counter.Counter('/tmp/wallpaper.count')
-        self.__cntnum=num
+        self.__cntnum=wpcfg.get('count_total',100)
     def action(self):
         val=self.__counter.valueBeforeDec()
         if val>self.__cntnum:
@@ -102,16 +87,12 @@ class WallpaperAwww():
 if __name__=='__main__':
     import sys
     try:
-        cfg=loadCfg(os.environ['HOME']+'/.config/waybar/wallpaper.ini')
-        try:
-            num=int(cfg['count_total'])
-        except ValueError:
-            num=100
+        cfg=waybarcfg.loadcfg(os.environ['HOME']+'/.config/waybar/wallpaper.ini')
     except Exception as e:
         raise(e)
         
     
-    wa=WallpaperAwww(cfg['path'],num)
+    wa=WallpaperAwww(cfg['wallpaper'],cfg['log']['file'])
     if len(sys.argv)>1:
         if sys.argv[1]=='next':
             wa.atOnce()
