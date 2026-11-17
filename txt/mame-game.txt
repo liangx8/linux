@@ -16,7 +16,7 @@ midres	       * 商店魂斗罗
 outzonea        out zone
 p47             * P47 phontom finghter
 pow             脱狱
-crimfghtu       * 最早4人(最不好玩的版本)
+crimfght        * 4人(2人版本)
 tharrieru       * 会变成无敌飞机
 cbuster         * 动作
 ctribe          4人动作
@@ -36,4 +36,8 @@ jackalj         赤色要塞(白弹8方向)
 lgtnfght       * 飞机
 fcrash          街道战士（红白）
 prehisle        飞机打恐龙
-
+dinopic         恐龙快打
+sf2m1..sf2m8    街霸
+varth           威虎战机
+geminib         gemin wing 打昆虫
+gensis,megadrv 类似的是世嘉模拟器，能玩大航海时代2
