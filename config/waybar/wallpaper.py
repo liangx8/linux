@@ -74,7 +74,7 @@ class WallpaperAwww():
         wp=loadPic(self.__dir,self.__log)
         self.__log.info(f'手动设置背景 {wp}')
         try:
-            res=subprocess.run(['awww', 'img', '-t', 'random' ,wp], capture_output=True, text=True, check=True)
+            res=subprocess.run(['awww', 'img','--resize','fit', '-t', 'random' ,wp], capture_output=True, text=True, check=True)
         except subprocess.CalledProcessError as e:
             self.__log.info(e)
 
@@ -87,7 +87,7 @@ class WallpaperAwww():
 if __name__=='__main__':
     import sys
     try:
-        cfg=waybarcfg.loadcfg(os.environ['HOME']+'/.config/waybar/wallpaper.ini')
+        cfg=waybarcfg.loadcfg(os.environ['HOME']+'/.config/waybar/waybar.ini')
     except Exception as e:
         raise(e)
         
