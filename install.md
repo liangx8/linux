@@ -1,13 +1,3 @@
-xorg-server
-lightdm
-lightdm-gtk-greeter
-feh
-picom   桌面透明代理
-
-xorg-xrdb  建议安装，否则.Xresources 的设置无效
-xorg-xev 事件提示
-
-用wayland后，上面的都不需要了
 
 code  visual code studio
 
@@ -37,7 +27,6 @@ vorbis-tools      ogg encoder
 qbittorrent-nox   用浏览器作为UI
 e2fsprogs         e2label ext4分区标签
 
-
 octave            数学画图
 gnuplot                  画二维 
                   plot [x=1:4] 0.5*x*x-3.1
@@ -50,3 +39,4 @@ dosfstools        dos file system utilities
 imv               看图软件
 mpv               万能音乐，视频文件播放
 resilio-sync      必须自行下载。运行依赖 libxcrypt-compat
+ffmpeg            某些软件用到的依赖，包含命令ffplay,能播放mp4文件
